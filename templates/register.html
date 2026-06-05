@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Реєстрація учасника</h3>
+                
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form action="/register" method="post">
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="first_name" class="form-control" placeholder="Ім'я" required></div>
+                        <div class="col"><input type="text" name="last_name" class="form-control" placeholder="Прізвище" required></div>
+                    </div>
+                    <div class="mb-3">
+                        <select name="gender" class="form-select" required>
+                            <option value="">Оберіть стать...</option>
+                            <option value="Чоловіча">Чоловіча</option>
+                            <option value="Жіноча">Жіноча</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="nationality" class="form-control" placeholder="Національність" required></div>
+                        <div class="col"><input type="date" name="birth_date" class="form-control" required></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="organization" class="form-control" placeholder="Назва організації" required></div>
+                        <div class="col"><input type="text" name="position" class="form-control" placeholder="Посада" required></div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col"><input type="password" name="password" class="form-control" placeholder="Пароль (мін. 6 символів)" required minlength="6"></div>
+                        <div class="col"><input type="password" name="confirm_password" class="form-control" placeholder="Підтвердження пароля" required minlength="6"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Зареєструватися</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

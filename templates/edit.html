@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Редагування профілю</h3>
+                
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form action="/edit" method="post">
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="first_name" class="form-control" value="{{ user.first_name }}" required></div>
+                        <div class="col"><input type="text" name="last_name" class="form-control" value="{{ user.last_name }}" required></div>
+                    </div>
+                    <div class="mb-3">
+                        <select name="gender" class="form-select" required>
+                            <option value="Чоловіча" {% if user.gender == 'Чоловіча' %}selected{% endif %}>Чоловіча</option>
+                            <option value="Жіноча" {% if user.gender == 'Жіноча' %}selected{% endif %}>Жіноча</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="nationality" class="form-control" value="{{ user.nationality }}" required></div>
+                        <div class="col"><input type="date" name="birth_date" class="form-control" value="{{ user.birth_date }}" required></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col"><input type="text" name="organization" class="form-control" value="{{ user.organization }}" required></div>
+                        <div class="col"><input type="text" name="position" class="form-control" value="{{ user.position }}" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Зберегти зміни</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

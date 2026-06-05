@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h2 class="mb-4">Зареєстровані учасники конференції</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>№</th>
+                    <th>Ім'я та Прізвище</th>
+                    <th>Організація</th>
+                    <th>Email</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ u.first_name }} {{ u.last_name }}</td>
+                    <td>{{ u.organization }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>
+                        {% if u.email == user.email %}
+                            <a href="/edit" class="btn btn-sm btn-outline-primary">Редагувати</a>
+                        {% else %}
+                            <span class="text-muted">-</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
